@@ -9,6 +9,12 @@
 #import "XMGEssenceViewController.h"
 #import "XMGTitleButton.h"
 
+#import "XMGAllViewController.h"
+#import "XMGVideoViewController.h"
+#import "XMGVoiceViewController.h"
+#import "XMGPictureViewController.h"
+#import "XMGWordViewController.h"
+
 @interface XMGEssenceViewController ()
 /** 标题栏 */
 @property (nonatomic, weak) UIView *titlesView;
@@ -24,6 +30,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // 初始化子控制器
+    [self setupAllChildVcs];
+    
     // 设置导航条
     [self setupNavBar];
     
@@ -34,6 +43,17 @@
     [self setupTitlesView];
 }
 
+/**
+ *  初始化子控制器
+ */
+- (void)setupAllChildVcs
+{
+    [self addChildViewController:[[XMGAllViewController alloc] init]];
+    [self addChildViewController:[[XMGVideoViewController alloc] init]];
+    [self addChildViewController:[[XMGVoiceViewController alloc] init]];
+    [self addChildViewController:[[XMGPictureViewController alloc] init]];
+    [self addChildViewController:[[XMGWordViewController alloc] init]];
+}
 
 /**
  *  设置导航条
@@ -56,10 +76,30 @@
  */
 - (void)setupScrollView
 {
+    // 不允许自动修改UIScrollView的内边距
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     scrollView.backgroundColor = [UIColor blueColor];
     scrollView.frame = self.view.bounds;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.pagingEnabled = YES;
     [self.view addSubview:scrollView];
+    
+    // 添加子控制器的view
+    NSUInteger count = self.childViewControllers.count;
+    CGFloat scrollViewW = scrollView.xmg_width;
+    CGFloat scrollViewH = scrollView.xmg_height;
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        // 取出i位置子控制器的view
+        UIView *childVcView = self.childViewControllers[i].view;
+        childVcView.frame = CGRectMake(i * scrollViewW, 0, scrollViewW, scrollViewH);
+        [scrollView addSubview:childVcView];
+    }
+    
+    scrollView.contentSize = CGSizeMake(count * scrollViewW, 0);
 }
 
 /**
