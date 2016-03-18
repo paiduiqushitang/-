@@ -20,10 +20,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
     
     // 设置导航条
     [self setupNavBar];
+    
+    // scrollView
+    [self setupScrollView];
+    
+    // 标题栏
+    [self setupTitlesView];
+}
+
+/**
+ *  scrollView
+ */
+- (void)setupScrollView
+{
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.backgroundColor = [UIColor redColor];
+    scrollView.frame = self.view.bounds;
+    [self.view addSubview:scrollView];
+}
+
+/**
+ *  标题栏
+ */
+- (void)setupTitlesView
+{
+    UIView *titlesView = [[UIView alloc] init];
+    // 设置半透明背景色
+    titlesView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+//    titlesView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+//    titlesView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.5];
+    // 子控件会继承父控件设置的alpha透明度
+//    titlesView.alpha = 0.5;
+    titlesView.frame = CGRectMake(0, 64, self.view.xmg_width, 35);
+    [self.view addSubview:titlesView];
 }
 
 #pragma mark - 设置导航条

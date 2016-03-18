@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "XMGAdViewController.h"
+#import "XMGTabBarController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -21,9 +23,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     // 2.设置窗口根控制器
-    XMGAdViewController *adVc = [[XMGAdViewController alloc] init];
+    self.window.rootViewController = [[XMGTabBarController alloc] init];
+//    XMGAdViewController *adVc = [[XMGAdViewController alloc] init];
     // init ->  initWithNibName 1.首先判断有没有指定nibName 2.判断下有没有跟类名同名xib
-    self.window.rootViewController = adVc;
+//    self.window.rootViewController = adVc;
     
     // 3.显示窗口 1.成为UIApplication主窗口 2.
     [self.window makeKeyAndVisible];
