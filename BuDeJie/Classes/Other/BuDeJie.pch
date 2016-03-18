@@ -18,7 +18,7 @@
 #import "UIBarButtonItem+Item.h"
 
 #define XMGColor(r,g,b) [UIColor colorWithRed:(r) / 256.0 green:(g) / 256.0 blue:(b) / 256.0 alpha:1]
-
+#define XMGRandomColor XMGColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
 
 /***********屏幕适配*************/
 #define XMGScreenW [UIScreen mainScreen].bounds.size.width
@@ -33,7 +33,7 @@
 
 #ifdef DEBUG // 调试
 
-#define XMGLog(...) NSLog(__VA_ARGS__)
+#define XMGLog(...) NSLog(__VA_ARGS__);
 
 #else // 发布
 

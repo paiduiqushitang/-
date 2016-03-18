@@ -35,6 +35,7 @@
 		70432A751C97F8C8008E4679 /* XMGLoginRegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70432A741C97F8C8008E4679 /* XMGLoginRegisterView.m */; };
 		70432A771C97F8DD008E4679 /* XMGLoginRegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70432A761C97F8DD008E4679 /* XMGLoginRegisterView.xib */; };
 		704601881C99536100243B72 /* XMGFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 704601871C99536100243B72 /* XMGFileTool.m */; };
+		704A2C591C9BB17700E58C76 /* XMGTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 704A2C581C9BB17700E58C76 /* XMGTitleButton.m */; };
 		7097A1861C98FE3900231962 /* XMGSquareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7097A1841C98FE3900231962 /* XMGSquareCell.m */; };
 		7097A1871C98FE3900231962 /* XMGSquareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7097A1851C98FE3900231962 /* XMGSquareCell.xib */; };
 		7097A18A1C9905E900231962 /* XMGSquareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7097A1891C9905E900231962 /* XMGSquareItem.m */; };
@@ -123,6 +124,8 @@
 		70432A761C97F8DD008E4679 /* XMGLoginRegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGLoginRegisterView.xib; sourceTree = "<group>"; };
 		704601861C99536100243B72 /* XMGFileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGFileTool.h; sourceTree = "<group>"; };
 		704601871C99536100243B72 /* XMGFileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGFileTool.m; sourceTree = "<group>"; };
+		704A2C571C9BB17700E58C76 /* XMGTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTitleButton.h; sourceTree = "<group>"; };
+		704A2C581C9BB17700E58C76 /* XMGTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTitleButton.m; sourceTree = "<group>"; };
 		7097A1831C98FE3900231962 /* XMGSquareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGSquareCell.h; sourceTree = "<group>"; };
 		7097A1841C98FE3900231962 /* XMGSquareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGSquareCell.m; sourceTree = "<group>"; };
 		7097A1851C98FE3900231962 /* XMGSquareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGSquareCell.xib; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 		700334CE1C92A96D00B04292 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				704A2C571C9BB17700E58C76 /* XMGTitleButton.h */,
+				704A2C581C9BB17700E58C76 /* XMGTitleButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -818,6 +823,7 @@
 				70CB98291C93CB02003A01DD /* XMGSettingViewController.m in Sources */,
 				7019DB5F1C97AB9200E614F4 /* XMGSubTagItem.m in Sources */,
 				700334F01C92A9FC00B04292 /* XMGNewViewController.m in Sources */,
+				704A2C591C9BB17700E58C76 /* XMGTitleButton.m in Sources */,
 				700BD5661C98099200B4E90B /* XMGFastButton.m in Sources */,
 				70AB495A1C9935CF0044E502 /* XMGWebViewController.m in Sources */,
 				70CB98301C940299003A01DD /* XMGAdViewController.m in Sources */,
