@@ -12,6 +12,8 @@
 @interface XMGEssenceViewController ()
 /** 标题栏 */
 @property (nonatomic, weak) UIView *titlesView;
+/** 标题下划线 */
+@property (nonatomic, weak) UIView *titleUnderline;
 /** 上一次点击的标题按钮 */
 @property (nonatomic, weak) XMGTitleButton *previousClickedTitleButton;
 @end
@@ -58,15 +60,6 @@
     scrollView.backgroundColor = [UIColor blueColor];
     scrollView.frame = self.view.bounds;
     [self.view addSubview:scrollView];
-    /*
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 100, 50);
-    [btn setTitle:@"按钮" forState:UIControlStateNormal];
-    //    [btn setBackgroundImage:[UIImage imageNamed:@"mine-my-post"] forState:UIControlStateNormal];
-    // 加载bundle里面的图片需要加上bundle的文件名, 格式: bundle文件名/图片名
-//    [btn setImage:[UIImage imageNamed:@"SVProgressHUD.bundle/error"] forState:UIControlStateNormal];
-    [scrollView addSubview:btn];
-     */
 }
 
 /**
@@ -84,7 +77,7 @@
     [self setupTitleButtons];
     
     // 标题下划线
-//    [self setupTitleUnderline];
+    [self setupTitleUnderline];
 }
 
 /**
@@ -109,10 +102,32 @@
         titleButton.frame = CGRectMake(i * titleButtonW, 0, titleButtonW, titleButtonH);
         // 文字
         [titleButton setTitle:titles[i] forState:UIControlStateNormal];
-        [titleButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [titleButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-//        [titleButton setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
     }
+}
+
+/**
+ *  标题下划线
+ */
+- (void)setupTitleUnderline
+{
+    // 标题按钮
+    XMGTitleButton *firstTitleButton = self.titlesView.subviews.firstObject;
+    
+    // 下划线
+    UIView *titleUnderline = [[UIView alloc] init];
+    titleUnderline.xmg_height = 2;
+    titleUnderline.xmg_y = self.titlesView.xmg_height - titleUnderline.xmg_height;
+    titleUnderline.backgroundColor = [firstTitleButton titleColorForState:UIControlStateSelected];
+    [self.titlesView addSubview:titleUnderline];
+    self.titleUnderline = titleUnderline;
+    
+    // 切换按钮状态
+    firstTitleButton.selected = YES;
+    self.previousClickedTitleButton = firstTitleButton;
+    
+    [firstTitleButton.titleLabel sizeToFit]; // 让label根据文字内容计算尺寸
+    self.titleUnderline.xmg_width = firstTitleButton.titleLabel.xmg_width + 10;
+    self.titleUnderline.xmg_centerX = firstTitleButton.xmg_centerX;
 }
 
 #pragma mark - 监听
@@ -121,26 +136,17 @@
  */
 - (void)titleButtonClick:(XMGTitleButton *)titleButton
 {
+    // 切换按钮状态
     self.previousClickedTitleButton.selected = NO;
     titleButton.selected = YES;
     self.previousClickedTitleButton = titleButton;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        // 处理下划线
+        self.titleUnderline.xmg_width = titleButton.titleLabel.xmg_width + 10;
+        self.titleUnderline.xmg_centerX = titleButton.xmg_centerX;
+    }];
 }
-
-//- (void)titleButtonClick:(XMGTitleButton *)titleButton
-//{
-//    self.previousClickedTitleButton.enabled = YES;
-//    titleButton.enabled = NO;
-//    self.previousClickedTitleButton = titleButton;
-//    
-//    XMGFunc
-//}
-
-//- (void)titleButtonClick:(XMGTitleButton *)titleButton
-//{
-//    [self.previousClickedTitleButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//    [titleButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    self.previousClickedTitleButton = titleButton;
-//}
 
 - (void)game
 {
