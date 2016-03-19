@@ -42,6 +42,9 @@
     
     // 标题栏
     [self setupTitlesView];
+    
+    // 添加第0个子控制器的view
+    [self addChildVcViewIntoScrollView:0];
 }
 
 /**
@@ -93,15 +96,6 @@
     // 添加子控制器的view
     NSUInteger count = self.childViewControllers.count;
     CGFloat scrollViewW = scrollView.xmg_width;
-    CGFloat scrollViewH = scrollView.xmg_height;
-    
-    for (NSUInteger i = 0; i < count; i++) {
-        // 取出i位置子控制器的view
-        UIView *childVcView = self.childViewControllers[i].view;
-        childVcView.frame = CGRectMake(i * scrollViewW, 0, scrollViewW, scrollViewH);
-        [scrollView addSubview:childVcView];
-    }
-    
     scrollView.contentSize = CGSizeMake(count * scrollViewW, 0);
 }
 
@@ -185,14 +179,18 @@
     titleButton.selected = YES;
     self.previousClickedTitleButton = titleButton;
     
+    NSUInteger index = titleButton.tag;
     [UIView animateWithDuration:0.25 animations:^{
         // 处理下划线
         self.titleUnderline.xmg_width = titleButton.titleLabel.xmg_width + 10;
         self.titleUnderline.xmg_centerX = titleButton.xmg_centerX;
         
         // 滚动scrollView
-        CGFloat offsetX = self.scrollView.xmg_width * titleButton.tag;
+        CGFloat offsetX = self.scrollView.xmg_width * index;
         self.scrollView.contentOffset = CGPointMake(offsetX, self.scrollView.contentOffset.y);
+    } completion:^(BOOL finished) {
+        // 添加子控制器的view
+        [self addChildVcViewIntoScrollView:index];
     }];
 }
 
@@ -215,4 +213,26 @@
     [self titleButtonClick:titleButton];
 }
 
+#pragma mark - 其他
+/**
+ *  添加第index个子控制器的view到scrollView中
+ */
+- (void)addChildVcViewIntoScrollView:(NSUInteger)index
+{
+    UIViewController *childVc = self.childViewControllers[index];
+    
+    // 如果view已经被加载过，就直接返回
+    if (childVc.isViewLoaded) return;
+    
+    // 取出index位置对应的子控制器view
+    UIView *childVcView = childVc.view;
+//    if (childVcView.superview) return;
+//    if (childVcView.window) return;
+    
+    // 设置子控制器view的frame
+    CGFloat scrollViewW = self.scrollView.xmg_width;
+    childVcView.frame = CGRectMake(index * scrollViewW, 0, scrollViewW, self.scrollView.xmg_height);
+    // 添加子控制器的view到scrollView中
+    [self.scrollView addSubview:childVcView];
+}
 @end
