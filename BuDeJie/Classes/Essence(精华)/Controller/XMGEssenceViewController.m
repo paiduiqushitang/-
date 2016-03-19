@@ -15,7 +15,9 @@
 #import "XMGPictureViewController.h"
 #import "XMGWordViewController.h"
 
-@interface XMGEssenceViewController ()
+@interface XMGEssenceViewController () <UIScrollViewDelegate>
+/** 用来存放所有子控制器view的scrollView */
+@property (nonatomic, weak) UIScrollView *scrollView;
 /** 标题栏 */
 @property (nonatomic, weak) UIView *titlesView;
 /** 标题下划线 */
@@ -28,7 +30,6 @@
 #pragma mark - 初始化
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // 初始化子控制器
     [self setupAllChildVcs];
@@ -82,10 +83,12 @@
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     scrollView.backgroundColor = [UIColor blueColor];
     scrollView.frame = self.view.bounds;
+    scrollView.delegate = self;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.pagingEnabled = YES;
     [self.view addSubview:scrollView];
+    self.scrollView = scrollView;
     
     // 添加子控制器的view
     NSUInteger count = self.childViewControllers.count;
@@ -136,6 +139,7 @@
     // 创建5个标题按钮
     for (NSUInteger i = 0; i < count; i++) {
         XMGTitleButton *titleButton = [[XMGTitleButton alloc] init];
+        titleButton.tag = i;
         [titleButton addTarget:self action:@selector(titleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.titlesView addSubview:titleButton];
         // frame
@@ -185,12 +189,30 @@
         // 处理下划线
         self.titleUnderline.xmg_width = titleButton.titleLabel.xmg_width + 10;
         self.titleUnderline.xmg_centerX = titleButton.xmg_centerX;
+        
+        // 滚动scrollView
+        CGFloat offsetX = self.scrollView.xmg_width * titleButton.tag;
+        self.scrollView.contentOffset = CGPointMake(offsetX, self.scrollView.contentOffset.y);
     }];
 }
 
 - (void)game
 {
     XMGFunc
+}
+
+#pragma mark - <UIScrollViewDelegate>
+/**
+ *  当用户松开scrollView并且滑动结束时调用这个代理方法（scrollView停止滚动的时候）
+ */
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    // 求出标题按钮的索引
+    NSUInteger index = scrollView.contentOffset.x / scrollView.xmg_width;
+    
+    // 点击对应的标题按钮
+    XMGTitleButton *titleButton = self.titlesView.subviews[index];
+    [self titleButtonClick:titleButton];
 }
 
 @end
