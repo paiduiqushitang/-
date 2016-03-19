@@ -9,3 +9,8 @@ UIKIT_EXTERN CGFloat const XMGNavMaxY;
 /** 标题栏的高度 */
 UIKIT_EXTERN CGFloat const XMGTitlesViewH;
 
+/** TabBarButton被重复点击的通知 */
+UIKIT_EXTERN NSString  * const XMGTabBarButtonDidRepeatClickNotification;
+
+/** TitleButton被重复点击的通知 */
+UIKIT_EXTERN NSString  * const XMGTitleButtonDidRepeatClickNotification;

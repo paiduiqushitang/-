@@ -60,9 +60,13 @@
 - (void)setupTabBar
 {
     XMGTabBar *tabBar = [[XMGTabBar alloc] init];
-    
     [self setValue:tabBar forKey:@"tabBar"];
 }
+
+/*
+ Changing the delegate of a tab bar 【managed by a tab bar controller】 is not allowed.
+ 被UITabBarController所管理的UITabBar的delegate是不允许修改的
+ */
 
 #pragma mark - 添加所有子控制器
 - (void)setupAllChildViewController

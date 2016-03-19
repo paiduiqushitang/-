@@ -90,6 +90,7 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.pagingEnabled = YES;
+    scrollView.scrollsToTop = NO; // 点击状态栏的时候，这个scrollView不会滚动到最顶部
     [self.view addSubview:scrollView];
     self.scrollView = scrollView;
     
@@ -174,6 +175,11 @@
  */
 - (void)titleButtonClick:(XMGTitleButton *)titleButton
 {
+    // 重复点击了标题按钮
+    if (self.previousClickedTitleButton == titleButton) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:XMGTitleButtonDidRepeatClickNotification object:nil];
+    }
+    
     // 切换按钮状态
     self.previousClickedTitleButton.selected = NO;
     titleButton.selected = YES;
@@ -192,6 +198,23 @@
         // 添加子控制器的view
         [self addChildVcViewIntoScrollView:index];
     }];
+    
+    // 设置index位置对应的tableView.scrollsToTop = YES， 其他都设置为NO
+    for (NSUInteger i = 0; i < self.childViewControllers.count; i++) {
+        UIViewController *childVc = self.childViewControllers[i];
+        // 如果view还没有被创建，就不用去处理
+        if (!childVc.isViewLoaded) continue;
+        
+        UIScrollView *scrollView = (UIScrollView *)childVc.view;
+        if (![scrollView isKindOfClass:[UIScrollView class]]) continue;
+        
+//        if (i == index) { // 是标题按钮对应的子控制器
+//            scrollView.scrollsToTop = YES;
+//        } else {
+//            scrollView.scrollsToTop = NO;
+//        }
+        scrollView.scrollsToTop = (i == index);
+    }
 }
 
 - (void)game
@@ -226,8 +249,6 @@
     
     // 取出index位置对应的子控制器view
     UIView *childVcView = childVc.view;
-//    if (childVcView.superview) return;
-//    if (childVcView.window) return;
     
     // 设置子控制器view的frame
     CGFloat scrollViewW = self.scrollView.xmg_width;

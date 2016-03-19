@@ -20,6 +20,37 @@
     self.view.backgroundColor = XMGRandomColor;
     
     self.tableView.contentInset = UIEdgeInsetsMake(XMGNavMaxY + XMGTitlesViewH, 0, XMGTabBarH, 0);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBarButtonDidRepeatClick) name:XMGTabBarButtonDidRepeatClickNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(titleButtonDidRepeatClick) name:XMGTitleButtonDidRepeatClickNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - 监听
+/**
+ *  监听tabBarButton重复点击
+ */
+- (void)tabBarButtonDidRepeatClick
+{
+//    if (重复点击的不是精华按钮) return;
+    if (self.view.window == nil) return;
+    
+//    if (显示在正中间的不是AllViewController) return;
+    if (self.tableView.scrollsToTop == NO) return;
+    
+    XMGLog(@"%@ - 刷新数据", self.class)
+}
+
+/**
+ *  监听titleButton重复点击
+ */
+- (void)titleButtonDidRepeatClick
+{
+    [self tabBarButtonDidRepeatClick];
 }
 
 #pragma mark - 数据源
