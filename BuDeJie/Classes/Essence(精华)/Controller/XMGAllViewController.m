@@ -18,6 +18,8 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = XMGRandomColor;
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(XMGNavMaxY + XMGTitlesViewH, 0, XMGTabBarH, 0);
 }
 
 #pragma mark - 数据源
