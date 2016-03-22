@@ -7,10 +7,14 @@
 //
 
 #import "XMGAllViewController.h"
+#import <AFNetworking.h>
+#import <MJExtension.h>
+#import "XMGTopic.h"
+#import <SVProgressHUD.h>
 
 @interface XMGAllViewController ()
-/** 数据量 */
-@property (nonatomic, assign) NSInteger dataCount;
+/** 所有的帖子数据 */
+@property (nonatomic, strong) NSMutableArray *topics;
 
 /** 下拉刷新控件 */
 @property (nonatomic, weak) UIView *header;
@@ -118,12 +122,91 @@
     [self tabBarButtonDidRepeatClick];
 }
 
+#pragma mark - 数据处理
+/**
+ *  发送请求给服务器，下拉刷新数据
+ */
+- (void)loadNewTopics
+{
+    // 1.创建请求会话管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    // 2.拼接参数
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"a"] = @"list";
+    parameters[@"c"] = @"data";
+    parameters[@"type"] = @"1"; // 这里发送@1也是可行的
+    
+    // 3.发送请求
+    [mgr GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        // 字典数组 -> 模型数据
+        self.topics = [XMGTopic mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 结束刷新
+        [self headerEndRefreshing];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"网络繁忙，请稍后再试！"];
+        
+        // 结束刷新
+        [self headerEndRefreshing];
+    }];
+}
+
+/**
+ *  发送请求给服务器，上拉加载更多数据
+ */
+- (void)loadMoreTopics
+{
+    // 1.创建请求会话管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    // 2.拼接参数
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"a"] = @"list";
+    parameters[@"c"] = @"data";
+    parameters[@"type"] = @"1"; // 这里发送@1也是可行的
+    
+    // 3.发送请求
+    [mgr GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        // 字典数组 -> 模型数据
+        NSArray *moreTopics = [XMGTopic mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        // 累加到旧数组的后面
+        [self.topics addObjectsFromArray:moreTopics];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 结束刷新
+        [self footerEndRefreshing];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"网络繁忙，请稍后再试！"];
+        
+        // 结束刷新
+        [self footerEndRefreshing];
+    }];
+}
+
+
+/*
+ // self.topics = @[10, 9, 8]
+ // moreTopics = @[7, 6 ,5]
+ 
+ // self.topics = @[10, 9, 8, @[7, 6 ,5]]
+ [self.topics addObject:moreTopics];
+ 
+ // self.topics = @[10, 9, 8, 7, 6 ,5]
+ [self.topics addObjectsFromArray:moreTopics];
+ */
+
 #pragma mark - 数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // 根据数据量显示或者隐藏footer
-    self.footer.hidden = (self.dataCount == 0);
-    return self.dataCount;
+    self.footer.hidden = (self.topics.count == 0);
+    return self.topics.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -131,10 +214,14 @@
     static NSString *ID = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
         cell.backgroundColor = [UIColor clearColor];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@-%zd", self.class, indexPath.row];
+    
+    XMGTopic *topic = self.topics[indexPath.row];
+    cell.textLabel.text = topic.name;
+    cell.detailTextLabel.text = topic.text;
+    
     return cell;
 }
 
@@ -194,41 +281,6 @@
     }
 }
 
-#pragma mark - 数据处理
-/**
- *  发送请求给服务器，下拉刷新数据
- */
-- (void)loadNewData
-{
-    XMGLog(@"发送请求给服务器，下拉刷新数据")
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 服务器的数据回来了
-        self.dataCount = 20;
-        [self.tableView reloadData];
-        
-        // 结束刷新
-        [self headerEndRefreshing];
-    });
-}
-
-/**
- *  发送请求给服务器，上拉加载更多数据
- */
-- (void)loadMoreData
-{
-    XMGLog(@"发送请求给服务器 - 加载更多数据")
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 服务器请求回来了
-        self.dataCount += 5;
-        [self.tableView reloadData];
-        
-        // 结束刷新
-        [self footerEndRefreshing];
-    });
-}
-
 #pragma mark - header
 - (void)headerBeginRefreshing
 {
@@ -250,7 +302,7 @@
     }];
     
     // 发送请求给服务器，下拉刷新数据
-    [self loadNewData];
+    [self loadNewTopics];
 }
 
 - (void)headerEndRefreshing
@@ -276,7 +328,7 @@
     self.footerLabel.backgroundColor = [UIColor blueColor];
     
     // 发送请求给服务器，上拉加载更多数据
-    [self loadMoreData];
+    [self loadMoreTopics];
 }
 
 - (void)footerEndRefreshing

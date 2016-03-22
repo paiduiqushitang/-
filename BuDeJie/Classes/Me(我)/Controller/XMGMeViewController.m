@@ -76,7 +76,7 @@ static CGFloat const margin = 1;
     parameters[@"c"] = @"topic";
     
     // 3.发送请求
-    [mgr GET:@"http://api.budejie.com/api/api_open.php" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
+    [mgr GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
    
         NSArray *dictArr = responseObject[@"square_list"];
         
