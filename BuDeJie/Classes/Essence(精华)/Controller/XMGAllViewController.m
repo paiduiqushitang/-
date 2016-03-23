@@ -18,6 +18,9 @@
 /** 所有的帖子数据 */
 @property (nonatomic, strong) NSMutableArray *topics;
 
+/** 请求管理者 */
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
+
 /** 下拉刷新控件 */
 @property (nonatomic, weak) UIView *header;
 /** 下拉刷新控件里面的文字 */
@@ -34,6 +37,14 @@
 @end
 
 @implementation XMGAllViewController
+
+- (AFHTTPSessionManager *)manager
+{
+    if (!_manager) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -125,31 +136,23 @@
 }
 
 #pragma mark - 数据处理
-/*
- 服务器数据：48,47,46,45,44,43,42,41,40，39，38，37，36，35，34，。。。。。。5，4，3，2，1
- 
- 
- 客户端数据：
- self.topics = @[48,47,46,45,44,43]
- 
- */
-
 /**
  *  发送请求给服务器，下拉刷新数据
  */
 - (void)loadNewTopics
 {
-    // 1.创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    // 1.取消之前的请求
+    [self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
     
     // 2.拼接参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
     parameters[@"type"] = @"31";
+    parameters[@"mintime"] = @"5345345";
     
     // 3.发送请求
-    [mgr GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [self.manager GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         // 存储maxtime
         self.maxtime = responseObject[@"info"][@"maxtime"];
         
@@ -162,7 +165,9 @@
         // 结束刷新
         [self headerEndRefreshing];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [SVProgressHUD showErrorWithStatus:@"网络繁忙，请稍后再试！"];
+        if (error.code != NSURLErrorCancelled) { // 并非是取消任务导致的error，其他网络问题导致的error
+            [SVProgressHUD showErrorWithStatus:@"网络繁忙，请稍后再试！"];
+        }
         
         // 结束刷新
         [self headerEndRefreshing];
@@ -174,8 +179,8 @@
  */
 - (void)loadMoreTopics
 {
-    // 1.创建请求会话管理者
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    // 1.取消之前的请求
+    [self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
     
     // 2.拼接参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -185,7 +190,7 @@
     parameters[@"maxtime"] = self.maxtime;
     
     // 3.发送请求
-    [mgr GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [self.manager GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         // 存储maxtime
         self.maxtime = responseObject[@"info"][@"maxtime"];
         
@@ -200,7 +205,9 @@
         // 结束刷新
         [self footerEndRefreshing];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [SVProgressHUD showErrorWithStatus:@"网络繁忙，请稍后再试！"];
+        if (error.code != NSURLErrorCancelled) { // 并非是取消任务导致的error，其他网络问题导致的error
+            [SVProgressHUD showErrorWithStatus:@"网络繁忙，请稍后再试！"];
+        }
         
         // 结束刷新
         [self footerEndRefreshing];
