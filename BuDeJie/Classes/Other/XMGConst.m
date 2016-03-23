@@ -10,7 +10,7 @@ CGFloat const XMGNavMaxY = 64;
 CGFloat const XMGTitlesViewH = 35;
 
 /** 统一的一个请求路径 */
-NSString  * const XMGCommonURL = @"http://api.budejie.c";
+NSString  * const XMGCommonURL = @"http://api.budejie.com/api/api_open.php";
 
 /** TabBarButton被重复点击的通知 */
 NSString  * const XMGTabBarButtonDidRepeatClickNotification = @"XMGTabBarButtonDidRepeatClickNotification";
