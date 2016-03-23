@@ -8,6 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
+//typedef enum {
+//    /** 全部 */
+//    XMGTopicTypeAll = 1,
+//    /** 图片 */
+//    XMGTopicTypePicture = 10,
+//    /** 段子 */
+//    XMGTopicTypeWord = 29,
+//    /** 声音 */
+//    XMGTopicTypeVoice = 31,
+//    /** 视频 */
+//    XMGTopicTypeVideo = 41
+//} XMGTopicType;
+
+typedef NS_ENUM(NSUInteger, XMGTopicType) {
+    /** 全部 */
+    XMGTopicTypeAll = 1,
+    /** 图片 */
+    XMGTopicTypePicture = 10,
+    /** 段子 */
+    XMGTopicTypeWord = 29,
+    /** 声音 */
+    XMGTopicTypeVoice = 31,
+    /** 视频 */
+    XMGTopicTypeVideo = 41
+};
+
 @interface XMGTopic : NSObject
 /** 用户的名字 */
 @property (nonatomic, copy) NSString *name;

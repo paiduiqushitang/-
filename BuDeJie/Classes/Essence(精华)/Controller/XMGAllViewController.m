@@ -11,11 +11,7 @@
 #import <MJExtension.h>
 #import "XMGTopic.h"
 #import <SVProgressHUD.h>
-
-#import "XMGVideoCell.h"
-#import "XMGVoiceCell.h"
-#import "XMGPictureCell.h"
-#import "XMGWordCell.h"
+#import "XMGTopicCell.h"
 
 @interface XMGAllViewController ()
 /** 当前最后一条帖子数据的描述信息，专门用来加载下一页数据 */
@@ -44,10 +40,7 @@
 @implementation XMGAllViewController
 
 /* cell的重用标识 */
-static NSString * const XMGVideoCellId = @"XMGVideoCellId";
-static NSString * const XMGVoiceCellId = @"XMGVoiceCellId";
-static NSString * const XMGPictureCellId = @"XMGPictureCellId";
-static NSString * const XMGWordCellId = @"XMGWordCellId";
+static NSString * const XMGTopicCellId = @"XMGTopicCellId";
 
 - (AFHTTPSessionManager *)manager
 {
@@ -60,16 +53,15 @@ static NSString * const XMGWordCellId = @"XMGWordCellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = XMGRandomColor;
+    self.view.backgroundColor = XMGGrayColor(206);
     
     self.tableView.contentInset = UIEdgeInsetsMake(XMGNavMaxY + XMGTitlesViewH, 0, XMGTabBarH, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    self.tableView.rowHeight = 200;
     
     // 注册cell
-    [self.tableView registerClass:[XMGVideoCell class] forCellReuseIdentifier:XMGVideoCellId];
-    [self.tableView registerClass:[XMGVoiceCell class] forCellReuseIdentifier:XMGVoiceCellId];
-    [self.tableView registerClass:[XMGPictureCell class] forCellReuseIdentifier:XMGPictureCellId];
-    [self.tableView registerClass:[XMGWordCell class] forCellReuseIdentifier:XMGWordCellId];
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass([XMGTopicCell class]) bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:XMGTopicCellId];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBarButtonDidRepeatClick) name:XMGTabBarButtonDidRepeatClickNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(titleButtonDidRepeatClick) name:XMGTitleButtonDidRepeatClickNotification object:nil];
@@ -240,20 +232,12 @@ static NSString * const XMGWordCellId = @"XMGWordCellId";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XMGTopic *topic = self.topics[indexPath.row];
-    XMGTopicCell *cell = nil;
+    // control + command + 空格 -> 弹出emoji表情键盘
+    //    cell.textLabel.text = @"⚠️哈哈";
     
-    if (topic.type == 10) { // 图片
-        cell = [tableView dequeueReusableCellWithIdentifier:XMGPictureCellId];
-    } else if (topic.type == 29) { // 段子
-        cell = [tableView dequeueReusableCellWithIdentifier:XMGWordCellId];
-    } else if (topic.type == 31) { // 声音
-        cell = [tableView dequeueReusableCellWithIdentifier:XMGVoiceCellId];
-    } else if (topic.type == 41) { // 视频
-        cell = [tableView dequeueReusableCellWithIdentifier:XMGVideoCellId];
-    }
+    XMGTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:XMGTopicCellId];
     
-    cell.topic = topic;
+    cell.topic = self.topics[indexPath.row];
     
     return cell;
 }
