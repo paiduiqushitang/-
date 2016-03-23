@@ -13,6 +13,8 @@
 #import <SVProgressHUD.h>
 
 @interface XMGAllViewController ()
+/** 当前最后一条帖子数据的描述信息，专门用来加载下一页数据 */
+@property (nonatomic, copy) NSString *maxtime;
 /** 所有的帖子数据 */
 @property (nonatomic, strong) NSMutableArray *topics;
 
@@ -123,6 +125,15 @@
 }
 
 #pragma mark - 数据处理
+/*
+ 服务器数据：48,47,46,45,44,43,42,41,40，39，38，37，36，35，34，。。。。。。5，4，3，2，1
+ 
+ 
+ 客户端数据：
+ self.topics = @[48,47,46,45,44,43]
+ 
+ */
+
 /**
  *  发送请求给服务器，下拉刷新数据
  */
@@ -135,10 +146,13 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
-    parameters[@"type"] = @"1"; // 这里发送@1也是可行的
+    parameters[@"type"] = @"31";
     
     // 3.发送请求
     [mgr GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        // 存储maxtime
+        self.maxtime = responseObject[@"info"][@"maxtime"];
+        
         // 字典数组 -> 模型数据
         self.topics = [XMGTopic mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         
@@ -167,10 +181,14 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
-    parameters[@"type"] = @"1"; // 这里发送@1也是可行的
+    parameters[@"type"] = @"31";
+    parameters[@"maxtime"] = self.maxtime;
     
     // 3.发送请求
     [mgr GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        // 存储maxtime
+        self.maxtime = responseObject[@"info"][@"maxtime"];
+        
         // 字典数组 -> 模型数据
         NSArray *moreTopics = [XMGTopic mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         // 累加到旧数组的后面
@@ -188,18 +206,6 @@
         [self footerEndRefreshing];
     }];
 }
-
-
-/*
- // self.topics = @[10, 9, 8]
- // moreTopics = @[7, 6 ,5]
- 
- // self.topics = @[10, 9, 8, @[7, 6 ,5]]
- [self.topics addObject:moreTopics];
- 
- // self.topics = @[10, 9, 8, 7, 6 ,5]
- [self.topics addObjectsFromArray:moreTopics];
- */
 
 #pragma mark - 数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
