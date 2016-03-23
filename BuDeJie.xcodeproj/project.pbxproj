@@ -66,6 +66,11 @@
 		70D569241C98F16C00B36123 /* UITextField+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D569231C98F16C00B36123 /* UITextField+Placeholder.m */; };
 		70D569261C98FAD500B36123 /* XMGMeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D569251C98FAD500B36123 /* XMGMeViewController.storyboard */; };
 		70DA8DDA1CA0F74400493189 /* XMGTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA8DD91CA0F74400493189 /* XMGTopic.m */; };
+		70DA8DDD1CA247C700493189 /* XMGTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA8DDC1CA247C700493189 /* XMGTopicCell.m */; };
+		70DA8DE01CA247ED00493189 /* XMGVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA8DDF1CA247ED00493189 /* XMGVideoCell.m */; };
+		70DA8DE31CA247F900493189 /* XMGVoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA8DE21CA247F900493189 /* XMGVoiceCell.m */; };
+		70DA8DE61CA2480600493189 /* XMGPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA8DE51CA2480600493189 /* XMGPictureCell.m */; };
+		70DA8DE91CA2481200493189 /* XMGWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA8DE81CA2481200493189 /* XMGWordCell.m */; };
 		9277BE08C7E8E9246571755A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AFB2DDD38084FCD4D4E545A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -182,6 +187,16 @@
 		70D569251C98FAD500B36123 /* XMGMeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = XMGMeViewController.storyboard; sourceTree = "<group>"; };
 		70DA8DD81CA0F74400493189 /* XMGTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopic.h; sourceTree = "<group>"; };
 		70DA8DD91CA0F74400493189 /* XMGTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopic.m; sourceTree = "<group>"; };
+		70DA8DDB1CA247C700493189 /* XMGTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicCell.h; sourceTree = "<group>"; };
+		70DA8DDC1CA247C700493189 /* XMGTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicCell.m; sourceTree = "<group>"; };
+		70DA8DDE1CA247ED00493189 /* XMGVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGVideoCell.h; sourceTree = "<group>"; };
+		70DA8DDF1CA247ED00493189 /* XMGVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGVideoCell.m; sourceTree = "<group>"; };
+		70DA8DE11CA247F900493189 /* XMGVoiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGVoiceCell.h; sourceTree = "<group>"; };
+		70DA8DE21CA247F900493189 /* XMGVoiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGVoiceCell.m; sourceTree = "<group>"; };
+		70DA8DE41CA2480600493189 /* XMGPictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGPictureCell.h; sourceTree = "<group>"; };
+		70DA8DE51CA2480600493189 /* XMGPictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGPictureCell.m; sourceTree = "<group>"; };
+		70DA8DE71CA2481200493189 /* XMGWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGWordCell.h; sourceTree = "<group>"; };
+		70DA8DE81CA2481200493189 /* XMGWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGWordCell.m; sourceTree = "<group>"; };
 		7AFB2DDD38084FCD4D4E545A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E29CC9856F93951A11DB77 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -316,6 +331,16 @@
 			children = (
 				704A2C571C9BB17700E58C76 /* XMGTitleButton.h */,
 				704A2C581C9BB17700E58C76 /* XMGTitleButton.m */,
+				70DA8DDB1CA247C700493189 /* XMGTopicCell.h */,
+				70DA8DDC1CA247C700493189 /* XMGTopicCell.m */,
+				70DA8DDE1CA247ED00493189 /* XMGVideoCell.h */,
+				70DA8DDF1CA247ED00493189 /* XMGVideoCell.m */,
+				70DA8DE11CA247F900493189 /* XMGVoiceCell.h */,
+				70DA8DE21CA247F900493189 /* XMGVoiceCell.m */,
+				70DA8DE41CA2480600493189 /* XMGPictureCell.h */,
+				70DA8DE51CA2480600493189 /* XMGPictureCell.m */,
+				70DA8DE71CA2481200493189 /* XMGWordCell.h */,
+				70DA8DE81CA2481200493189 /* XMGWordCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -844,11 +869,15 @@
 				70DA8DDA1CA0F74400493189 /* XMGTopic.m in Sources */,
 				70432A751C97F8C8008E4679 /* XMGLoginRegisterView.m in Sources */,
 				704601881C99536100243B72 /* XMGFileTool.m in Sources */,
+				70DA8DDD1CA247C700493189 /* XMGTopicCell.m in Sources */,
+				70DA8DE31CA247F900493189 /* XMGVoiceCell.m in Sources */,
 				70CB981F1C93C341003A01DD /* UIBarButtonItem+Item.m in Sources */,
 				70D569241C98F16C00B36123 /* UITextField+Placeholder.m in Sources */,
 				704A2C7E1C9C02A500E58C76 /* XMGConst.m in Sources */,
 				7097A18A1C9905E900231962 /* XMGSquareItem.m in Sources */,
+				70DA8DE01CA247ED00493189 /* XMGVideoCell.m in Sources */,
 				700334ED1C92A9EC00B04292 /* XMGMeViewController.m in Sources */,
+				70DA8DE91CA2481200493189 /* XMGWordCell.m in Sources */,
 				7019DB631C97AD3B00E614F4 /* XMGSubTagCell.m in Sources */,
 				7019DB5C1C97A91F00E614F4 /* XMGSubTagViewController.m in Sources */,
 				7019DB6D1C97F3B900E614F4 /* XMGLoginRegisterViewController.m in Sources */,
@@ -865,6 +894,7 @@
 				704A2C781C9BF27600E58C76 /* XMGPictureViewController.m in Sources */,
 				704A2C771C9BF27600E58C76 /* XMGAllViewController.m in Sources */,
 				704A2C791C9BF27600E58C76 /* XMGVideoViewController.m in Sources */,
+				70DA8DE61CA2480600493189 /* XMGPictureCell.m in Sources */,
 				704A2C591C9BB17700E58C76 /* XMGTitleButton.m in Sources */,
 				700BD5661C98099200B4E90B /* XMGFastButton.m in Sources */,
 				70AB495A1C9935CF0044E502 /* XMGWebViewController.m in Sources */,

@@ -173,13 +173,22 @@
 /**
  *  点击标题按钮
  */
-- (void)titleButtonClick:(XMGTitleButton *)titleButton
+- (IBAction)titleButtonClick:(XMGTitleButton *)titleButton
 {
     // 重复点击了标题按钮
     if (self.previousClickedTitleButton == titleButton) {
         [[NSNotificationCenter defaultCenter] postNotificationName:XMGTitleButtonDidRepeatClickNotification object:nil];
     }
     
+    // 处理标题按钮点击
+    [self dealTitleButtonClick:titleButton];
+}
+
+/**
+ *  处理标题按钮点击
+ */
+- (void)dealTitleButtonClick:(XMGTitleButton *)titleButton
+{
     // 切换按钮状态
     self.previousClickedTitleButton.selected = NO;
     titleButton.selected = YES;
@@ -208,11 +217,6 @@
         UIScrollView *scrollView = (UIScrollView *)childVc.view;
         if (![scrollView isKindOfClass:[UIScrollView class]]) continue;
         
-//        if (i == index) { // 是标题按钮对应的子控制器
-//            scrollView.scrollsToTop = YES;
-//        } else {
-//            scrollView.scrollsToTop = NO;
-//        }
         scrollView.scrollsToTop = (i == index);
     }
 }
@@ -233,7 +237,8 @@
     
     // 点击对应的标题按钮
     XMGTitleButton *titleButton = self.titlesView.subviews[index];
-    [self titleButtonClick:titleButton];
+//    [self titleButtonClick:titleButton];
+    [self dealTitleButtonClick:titleButton];
 }
 
 #pragma mark - 其他

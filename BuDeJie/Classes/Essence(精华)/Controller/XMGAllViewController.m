@@ -12,6 +12,11 @@
 #import "XMGTopic.h"
 #import <SVProgressHUD.h>
 
+#import "XMGVideoCell.h"
+#import "XMGVoiceCell.h"
+#import "XMGPictureCell.h"
+#import "XMGWordCell.h"
+
 @interface XMGAllViewController ()
 /** 当前最后一条帖子数据的描述信息，专门用来加载下一页数据 */
 @property (nonatomic, copy) NSString *maxtime;
@@ -38,6 +43,12 @@
 
 @implementation XMGAllViewController
 
+/* cell的重用标识 */
+static NSString * const XMGVideoCellId = @"XMGVideoCellId";
+static NSString * const XMGVoiceCellId = @"XMGVoiceCellId";
+static NSString * const XMGPictureCellId = @"XMGPictureCellId";
+static NSString * const XMGWordCellId = @"XMGWordCellId";
+
 - (AFHTTPSessionManager *)manager
 {
     if (!_manager) {
@@ -53,6 +64,12 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(XMGNavMaxY + XMGTitlesViewH, 0, XMGTabBarH, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    
+    // 注册cell
+    [self.tableView registerClass:[XMGVideoCell class] forCellReuseIdentifier:XMGVideoCellId];
+    [self.tableView registerClass:[XMGVoiceCell class] forCellReuseIdentifier:XMGVoiceCellId];
+    [self.tableView registerClass:[XMGPictureCell class] forCellReuseIdentifier:XMGPictureCellId];
+    [self.tableView registerClass:[XMGWordCell class] forCellReuseIdentifier:XMGWordCellId];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBarButtonDidRepeatClick) name:XMGTabBarButtonDidRepeatClickNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(titleButtonDidRepeatClick) name:XMGTitleButtonDidRepeatClickNotification object:nil];
@@ -149,7 +166,6 @@
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
     parameters[@"type"] = @"31";
-    parameters[@"mintime"] = @"5345345";
     
     // 3.发送请求
     [self.manager GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
@@ -224,16 +240,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-        cell.backgroundColor = [UIColor clearColor];
+    XMGTopic *topic = self.topics[indexPath.row];
+    XMGTopicCell *cell = nil;
+    
+    if (topic.type == 10) { // 图片
+        cell = [tableView dequeueReusableCellWithIdentifier:XMGPictureCellId];
+    } else if (topic.type == 29) { // 段子
+        cell = [tableView dequeueReusableCellWithIdentifier:XMGWordCellId];
+    } else if (topic.type == 31) { // 声音
+        cell = [tableView dequeueReusableCellWithIdentifier:XMGVoiceCellId];
+    } else if (topic.type == 41) { // 视频
+        cell = [tableView dequeueReusableCellWithIdentifier:XMGVideoCellId];
     }
     
-    XMGTopic *topic = self.topics[indexPath.row];
-    cell.textLabel.text = topic.name;
-    cell.detailTextLabel.text = topic.text;
+    cell.topic = topic;
     
     return cell;
 }
