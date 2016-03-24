@@ -58,7 +58,6 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
     self.tableView.contentInset = UIEdgeInsetsMake(XMGNavMaxY + XMGTitlesViewH, 0, XMGTabBarH, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight = 200;
     
     // 注册cell
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([XMGTopicCell class]) bundle:nil];
@@ -241,6 +240,30 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
 }
 
 #pragma mark - 代理方法
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XMGTopic *topic = self.topics[indexPath.row];
+    
+    CGFloat cellHeight = 0;
+    
+    // 文字的Y值
+    cellHeight += 55;
+    
+    // 文字的高度
+    CGSize textMaxSize = CGSizeMake(XMGScreenW - 2 * XMGMarin, MAXFLOAT);
+    cellHeight += [topic.text sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:textMaxSize].height + XMGMarin;
+    
+    // 工具条
+    cellHeight += 35 + XMGMarin;
+    
+    return cellHeight;
+}
+
+
+// 这2个方法只适合计算单行文字的宽高
+//    [topic.text sizeWithFont:[UIFont systemFontOfSize:15]].width;
+//    [UIFont systemFontOfSize:15].lineHeight;
+
 /**
  *  用户松开scrollView时调用
  */

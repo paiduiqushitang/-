@@ -10,12 +10,6 @@
 #import "XMGTopic.h"
 #import <UIImageView+WebCache.h>
 
-/*
- 插件的安装路径
- 1.旧版本路径：/Users/用户名/Library/Application Support/Developer/Shared/Xcode/Plug-ins
- 2.新版本路径：/Users/用户名/Library/Developer/Xcode/Plug-ins
- */
-
 @interface XMGTopicCell()
 // 控件的命名 -> 功能 + 控件类型
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -33,7 +27,6 @@
 - (void)awakeFromNib
 {
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainCellBackground"]];
-//    self.selectedBackgroundView
 }
 
 - (void)setTopic:(XMGTopic *)topic
@@ -78,8 +71,6 @@
 
 - (void)setFrame:(CGRect)frame
 {
-//    frame.origin.x += XMGMarin;
-//    frame.size.width -= 2 * XMGMarin;
     frame.size.height -= XMGMarin;
     
     [super setFrame:frame];
