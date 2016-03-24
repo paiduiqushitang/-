@@ -42,6 +42,12 @@
 		704A2C7A1C9BF27600E58C76 /* XMGVoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704A2C741C9BF27600E58C76 /* XMGVoiceViewController.m */; };
 		704A2C7B1C9BF27600E58C76 /* XMGWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704A2C761C9BF27600E58C76 /* XMGWordViewController.m */; };
 		704A2C7E1C9C02A500E58C76 /* XMGConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 704A2C7D1C9C02A500E58C76 /* XMGConst.m */; };
+		706DEB181CA3C88200D7F42F /* XMGTopicVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 706DEB171CA3C88200D7F42F /* XMGTopicVideoView.m */; };
+		706DEB1A1CA3C8C400D7F42F /* XMGTopicVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 706DEB191CA3C8C400D7F42F /* XMGTopicVideoView.xib */; };
+		706DEB1D1CA3C8FD00D7F42F /* XMGTopicVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 706DEB1C1CA3C8FD00D7F42F /* XMGTopicVoiceView.m */; };
+		706DEB201CA3C90900D7F42F /* XMGTopicPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 706DEB1F1CA3C90900D7F42F /* XMGTopicPictureView.m */; };
+		706DEB231CA3C92100D7F42F /* XMGTopicPictureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 706DEB211CA3C92100D7F42F /* XMGTopicPictureView.xib */; };
+		706DEB241CA3C92100D7F42F /* XMGTopicVoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 706DEB221CA3C92100D7F42F /* XMGTopicVoiceView.xib */; };
 		7097A1861C98FE3900231962 /* XMGSquareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7097A1841C98FE3900231962 /* XMGSquareCell.m */; };
 		7097A1871C98FE3900231962 /* XMGSquareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7097A1851C98FE3900231962 /* XMGSquareCell.xib */; };
 		7097A18A1C9905E900231962 /* XMGSquareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7097A1891C9905E900231962 /* XMGSquareItem.m */; };
@@ -147,6 +153,15 @@
 		704A2C761C9BF27600E58C76 /* XMGWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGWordViewController.m; sourceTree = "<group>"; };
 		704A2C7C1C9C02A500E58C76 /* XMGConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGConst.h; sourceTree = "<group>"; };
 		704A2C7D1C9C02A500E58C76 /* XMGConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGConst.m; sourceTree = "<group>"; };
+		706DEB161CA3C88200D7F42F /* XMGTopicVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicVideoView.h; sourceTree = "<group>"; };
+		706DEB171CA3C88200D7F42F /* XMGTopicVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicVideoView.m; sourceTree = "<group>"; };
+		706DEB191CA3C8C400D7F42F /* XMGTopicVideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGTopicVideoView.xib; sourceTree = "<group>"; };
+		706DEB1B1CA3C8FD00D7F42F /* XMGTopicVoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicVoiceView.h; sourceTree = "<group>"; };
+		706DEB1C1CA3C8FD00D7F42F /* XMGTopicVoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicVoiceView.m; sourceTree = "<group>"; };
+		706DEB1E1CA3C90900D7F42F /* XMGTopicPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicPictureView.h; sourceTree = "<group>"; };
+		706DEB1F1CA3C90900D7F42F /* XMGTopicPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicPictureView.m; sourceTree = "<group>"; };
+		706DEB211CA3C92100D7F42F /* XMGTopicPictureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGTopicPictureView.xib; sourceTree = "<group>"; };
+		706DEB221CA3C92100D7F42F /* XMGTopicVoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGTopicVoiceView.xib; sourceTree = "<group>"; };
 		7097A1831C98FE3900231962 /* XMGSquareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGSquareCell.h; sourceTree = "<group>"; };
 		7097A1841C98FE3900231962 /* XMGSquareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGSquareCell.m; sourceTree = "<group>"; };
 		7097A1851C98FE3900231962 /* XMGSquareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGSquareCell.xib; sourceTree = "<group>"; };
@@ -324,6 +339,15 @@
 				70DA8DDB1CA247C700493189 /* XMGTopicCell.h */,
 				70DA8DDC1CA247C700493189 /* XMGTopicCell.m */,
 				70DA8DF21CA2848600493189 /* XMGTopicCell.xib */,
+				706DEB161CA3C88200D7F42F /* XMGTopicVideoView.h */,
+				706DEB171CA3C88200D7F42F /* XMGTopicVideoView.m */,
+				706DEB191CA3C8C400D7F42F /* XMGTopicVideoView.xib */,
+				706DEB1B1CA3C8FD00D7F42F /* XMGTopicVoiceView.h */,
+				706DEB1C1CA3C8FD00D7F42F /* XMGTopicVoiceView.m */,
+				706DEB221CA3C92100D7F42F /* XMGTopicVoiceView.xib */,
+				706DEB1E1CA3C90900D7F42F /* XMGTopicPictureView.h */,
+				706DEB1F1CA3C90900D7F42F /* XMGTopicPictureView.m */,
+				706DEB211CA3C92100D7F42F /* XMGTopicPictureView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -765,6 +789,7 @@
 				7019DB691C97EC2000E614F4 /* XMGFriendTrendViewController.xib in Resources */,
 				70CB98321C9404AB003A01DD /* XMGAdViewController.xib in Resources */,
 				70CB983F1C940868003A01DD /* LaunchImage-800-Portrait-736h@3x.png in Resources */,
+				706DEB1A1CA3C8C400D7F42F /* XMGTopicVideoView.xib in Resources */,
 				700BD5631C98070100B4E90B /* XMGFastLoginView.xib in Resources */,
 				700334B51C92758C00B04292 /* LaunchScreen.storyboard in Resources */,
 				7097A1871C98FE3900231962 /* XMGSquareCell.xib in Resources */,
@@ -772,12 +797,14 @@
 				70D569261C98FAD500B36123 /* XMGMeViewController.storyboard in Resources */,
 				70CB98411C940868003A01DD /* LaunchImage@2x.png in Resources */,
 				7019DB641C97AD3B00E614F4 /* XMGSubTagCell.xib in Resources */,
+				706DEB241CA3C92100D7F42F /* XMGTopicVoiceView.xib in Resources */,
 				70AB495B1C9935CF0044E502 /* XMGWebViewController.xib in Resources */,
 				70432A771C97F8DD008E4679 /* XMGLoginRegisterView.xib in Resources */,
 				70CB983C1C940868003A01DD /* LaunchImage-700-568h@2x.png in Resources */,
 				70CB983E1C940868003A01DD /* LaunchImage-800-667h@2x.png in Resources */,
 				70CB983B1C940868003A01DD /* LaunchImage-568h@2x.png in Resources */,
 				70CB98401C940868003A01DD /* LaunchImage.png in Resources */,
+				706DEB231CA3C92100D7F42F /* XMGTopicPictureView.xib in Resources */,
 				700334B21C92758C00B04292 /* Assets.xcassets in Resources */,
 				70CB983D1C940868003A01DD /* LaunchImage-700@2x.png in Resources */,
 				700334B01C92758C00B04292 /* Main.storyboard in Resources */,
@@ -849,8 +876,10 @@
 				7019DB671C97BCE500E614F4 /* UIImage+Antialias.m in Sources */,
 				704A2C7B1C9BF27600E58C76 /* XMGWordViewController.m in Sources */,
 				70A7421B1C93A99400BFA6FA /* XMGTabBar.m in Sources */,
+				706DEB181CA3C88200D7F42F /* XMGTopicVideoView.m in Sources */,
 				70D569211C98EB1000B36123 /* XMGLoginField.m in Sources */,
 				70DA8DDA1CA0F74400493189 /* XMGTopic.m in Sources */,
+				706DEB201CA3C90900D7F42F /* XMGTopicPictureView.m in Sources */,
 				70432A751C97F8C8008E4679 /* XMGLoginRegisterView.m in Sources */,
 				704601881C99536100243B72 /* XMGFileTool.m in Sources */,
 				70DA8DDD1CA247C700493189 /* XMGTopicCell.m in Sources */,
@@ -872,6 +901,7 @@
 				70CB98291C93CB02003A01DD /* XMGSettingViewController.m in Sources */,
 				7019DB5F1C97AB9200E614F4 /* XMGSubTagItem.m in Sources */,
 				700334F01C92A9FC00B04292 /* XMGNewViewController.m in Sources */,
+				706DEB1D1CA3C8FD00D7F42F /* XMGTopicVoiceView.m in Sources */,
 				704A2C781C9BF27600E58C76 /* XMGPictureViewController.m in Sources */,
 				704A2C771C9BF27600E58C76 /* XMGAllViewController.m in Sources */,
 				704A2C791C9BF27600E58C76 /* XMGVideoViewController.m in Sources */,

@@ -58,8 +58,6 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
     self.tableView.contentInset = UIEdgeInsetsMake(XMGNavMaxY + XMGTitlesViewH, 0, XMGTabBarH, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    // 设置cell的估算高度（每一行大约都是estimatedRowHeight）
-    self.tableView.estimatedRowHeight = 100;
     
     // 注册cell
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([XMGTopicCell class]) bundle:nil];
@@ -244,28 +242,6 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
 }
 
 #pragma mark - 代理方法
-// 所有cell的高度 -> contentSize.height -> 滚动条长度
-// 1000 * 20 -> contentSize.height -> 滚动条长度
-// contentSize.height -> 200 * 20 -> 16800
-/*
- 使用estimatedRowHeight的优缺点
- 1.优点
- 1> 可以降低tableView:heightForRowAtIndexPath:方法的调用频率
- 2> 将【计算cell高度的操作】延迟执行了（相当于cell高度的计算是懒加载的）
- 
- 2.缺点
- 1> 滚动条长度不准确、不稳定，甚至有卡顿效果（如果不使用estimatedRowHeight，滚动条的长度就是准确的）
- */
-
-/**
- 这个方法的特点：
- 1.默认情况下(没有设置estimatedRowHeight的情况下)
- 1> 每次刷新表格时，有多少数据，这个方法就一次性调用多少次（比如有100条数据，每次reloadData时，这个方法就会一次性调用100次）
- 2> 每当有cell进入屏幕范围内，就会调用一次这个方法
- 
- 2.设置estimatedRowHeight的情况下
- 1> 用到了（显示了）哪个cell，才会调用这个方法计算那个cell的高度（方法调用频率降低了）
- */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.topics[indexPath.row].cellHeight;

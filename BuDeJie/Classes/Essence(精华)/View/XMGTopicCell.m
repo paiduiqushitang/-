@@ -10,6 +10,10 @@
 #import "XMGTopic.h"
 #import <UIImageView+WebCache.h>
 
+#import "XMGTopicPictureView.h"
+#import "XMGTopicVideoView.h"
+#import "XMGTopicVoiceView.h"
+
 @interface XMGTopicCell()
 // 控件的命名 -> 功能 + 控件类型
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -22,10 +26,49 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIView *topCmtView;
 @property (weak, nonatomic) IBOutlet UILabel *topCmtLabel;
+
+/* 中间控件 */
+/** 图片控件 */
+@property (nonatomic, weak) XMGTopicPictureView *pictureView;
+/** 声音控件 */
+@property (nonatomic, weak) XMGTopicVoiceView *voiceView;
+/** 视频控件 */
+@property (nonatomic, weak) XMGTopicVideoView *videoView;
 @end
 
 @implementation XMGTopicCell
+#pragma mark - 懒加载
+- (XMGTopicPictureView *)pictureView
+{
+    if (!_pictureView) {
+        XMGTopicPictureView *pictureView = [XMGTopicPictureView xmg_viewFromXib];
+        [self.contentView addSubview:pictureView];
+        _pictureView = pictureView;
+    }
+    return _pictureView;
+}
 
+- (XMGTopicVoiceView *)voiceView
+{
+    if (!_voiceView) {
+        XMGTopicVoiceView *voiceView = [XMGTopicVoiceView xmg_viewFromXib];
+        [self.contentView addSubview:voiceView];
+        _voiceView = voiceView;
+    }
+    return _voiceView;
+}
+
+- (XMGTopicVideoView *)videoView
+{
+    if (!_videoView) {
+        XMGTopicVideoView *videoView = [XMGTopicVideoView xmg_viewFromXib];
+        [self.contentView addSubview:videoView];
+        _videoView = videoView;
+    }
+    return _videoView;
+}
+
+#pragma mark - 初始化
 - (void)awakeFromNib
 {
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainCellBackground"]];
@@ -69,18 +112,52 @@
         self.topCmtView.hidden = YES;
     }
     
-    // 不能用以下条件来判断数组里面是否有存放元素
-    //    if (topic.top_cmt) {
-    //
-    //    }
-    //    if (topic.top_cmt != nil) {
-    //
-    //    }
-    
-    //    NSString *str = @"";
-    //    if (str)
-    //    if (str.length)
+    // 中间的内容
+    if (topic.type == XMGTopicTypePicture) { // 图片
+        self.pictureView.hidden = NO;
+        self.voiceView.hidden = YES;
+        self.videoView.hidden = YES;
+    } else if (topic.type == XMGTopicTypeVoice) { // 声音
+        self.pictureView.hidden = YES;
+        self.voiceView.hidden = NO;
+        self.videoView.hidden = YES;
+    } else if (topic.type == XMGTopicTypeVideo) { // 视频
+        self.pictureView.hidden = YES;
+        self.voiceView.hidden = YES;
+        self.videoView.hidden = NO;
+    } else if (topic.type == XMGTopicTypeWord) { // 段子
+        self.pictureView.hidden = YES;
+        self.voiceView.hidden = YES;
+        self.videoView.hidden = YES;
+    }
 }
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (self.topic.type == XMGTopicTypePicture) { // 图片
+        self.pictureView.frame = self.topic.middleFrame;
+    } else if (self.topic.type == XMGTopicTypeVoice) { // 声音
+        self.voiceView.frame = self.topic.middleFrame;
+    } else if (self.topic.type == XMGTopicTypeVideo) { // 视频
+        self.videoView.frame = self.topic.middleFrame;
+    }
+}
+
+/*
+ [[XMGVideoViewController alloc] init]
+ 1.XMGVideoViewController.xib
+ 2.XMGVideoView.xib
+ 
+ 报错信息：-[UIViewController _loadViewFromNibNamed:bundle:] loaded the "XMGVideoView" nib but the view outlet was not set.
+ 错误原因：在使用xib创建控制器view时，并没有通过File's Owner设置控制器的view属性
+ 解决方案：通过File's Owner设置控制器的view属性为某一个view
+ 
+ 报错信息：-[UITableViewController loadView] loaded the "XMGVideoView" nib but didn't get a UITableView.
+ 错误原因：在使用xib创建UITableViewController的view时，并没有设置控制器的view为一个UITableView
+ 解决方案：通过File's Owner设置控制器的view属性为一个UITableView
+ */
 
 /**
  *  设置按钮文字

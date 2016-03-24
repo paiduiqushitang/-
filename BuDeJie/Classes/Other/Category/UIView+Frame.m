@@ -10,6 +10,11 @@
 
 @implementation UIView (Frame)
 
++ (instancetype)xmg_viewFromXib
+{
+    return [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
+}
+
 - (void)setXmg_height:(CGFloat)xmg_height
 {
     CGRect rect = self.frame;
