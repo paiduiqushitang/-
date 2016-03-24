@@ -15,8 +15,6 @@
     // 如果已经计算过，就直接返回
     if (_cellHeight) return _cellHeight;
     
-    XMGFunc
-    
     // 文字的Y值
     _cellHeight += 55;
     
