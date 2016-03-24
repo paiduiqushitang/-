@@ -10,6 +10,12 @@
 #import "XMGTopic.h"
 #import <UIImageView+WebCache.h>
 
+/*
+ 插件的安装路径
+ 1.旧版本路径：/Users/用户名/Library/Application Support/Developer/Shared/Xcode/Plug-ins
+ 2.新版本路径：/Users/用户名/Library/Developer/Xcode/Plug-ins
+ */
+
 @interface XMGTopicCell()
 // 控件的命名 -> 功能 + 控件类型
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -27,6 +33,7 @@
 - (void)awakeFromNib
 {
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainCellBackground"]];
+//    self.selectedBackgroundView
 }
 
 - (void)setTopic:(XMGTopic *)topic
@@ -34,7 +41,14 @@
     _topic = topic;
     
     // 顶部控件的数据
-    [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:topic.profile_image] placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
+    UIImage *placeholder = [UIImage xmg_circleImageNamed:@"defaultUserIcon"];
+    [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:topic.profile_image] placeholderImage:placeholder options:0 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        // 图片下载失败，直接返回，按照它的默认做法
+        if (!image) return;
+        
+        self.profileImageView.image = [image xmg_circleImage];
+    }];
+    
     self.nameLabel.text = topic.name;
     self.passtimeLabel.text = topic.passtime;
     self.text_label.text = topic.text;
@@ -60,5 +74,14 @@
     } else {
         [button setTitle:placeholder forState:UIControlStateNormal];
     }
+}
+
+- (void)setFrame:(CGRect)frame
+{
+//    frame.origin.x += XMGMarin;
+//    frame.size.width -= 2 * XMGMarin;
+    frame.size.height -= XMGMarin;
+    
+    [super setFrame:frame];
 }
 @end

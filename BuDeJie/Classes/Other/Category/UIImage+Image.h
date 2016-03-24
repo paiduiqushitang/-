@@ -10,6 +10,9 @@
 
 @interface UIImage (Image)
 
-+ (UIImage *)imageOriginalWithName:(NSString *)imageName;
++ (instancetype)imageOriginalWithName:(NSString *)imageName;
 
+- (instancetype)xmg_circleImage;
+
++ (instancetype)xmg_circleImageNamed:(NSString *)name;
 @end

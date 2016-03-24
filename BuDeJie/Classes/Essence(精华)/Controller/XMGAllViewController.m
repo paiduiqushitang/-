@@ -57,6 +57,7 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
     
     self.tableView.contentInset = UIEdgeInsetsMake(XMGNavMaxY + XMGTitlesViewH, 0, XMGTabBarH, 0);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 200;
     
     // 注册cell
@@ -232,9 +233,6 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // control + command + 空格 -> 弹出emoji表情键盘
-    //    cell.textLabel.text = @"⚠️哈哈";
-    
     XMGTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:XMGTopicCellId];
     
     cell.topic = self.topics[indexPath.row];

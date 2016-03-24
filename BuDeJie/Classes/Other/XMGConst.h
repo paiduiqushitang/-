@@ -9,6 +9,9 @@ UIKIT_EXTERN CGFloat const XMGNavMaxY;
 /** 标题栏的高度 */
 UIKIT_EXTERN CGFloat const XMGTitlesViewH;
 
+/** 全局统一的间距 */
+UIKIT_EXTERN CGFloat const XMGMarin;
+
 /** 统一的一个请求路径 */
 UIKIT_EXTERN NSString  * const XMGCommonURL;
 

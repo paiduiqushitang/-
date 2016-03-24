@@ -190,7 +190,7 @@
                 <outlet property="repostButton" destination="wRl-vh-XoD" id="RzB-EU-IWR"/>
                 <outlet property="text_label" destination="eQy-XY-Vyd" id="Opr-QR-DeH"/>
             </connections>
-            <point key="canvasLocation" x="260" y="278"/>
+            <point key="canvasLocation" x="227" y="282"/>
         </tableViewCell>
     </objects>
     <resources>

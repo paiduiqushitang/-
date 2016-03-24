@@ -41,9 +41,9 @@ static CGFloat const margin = 1;
     
     // 处理cell间距,默认tableView分组样式,有额外头部和尾部间距
     self.tableView.sectionHeaderHeight = 0;
-    self.tableView.sectionFooterHeight = 10;
+    self.tableView.sectionFooterHeight = XMGMarin;
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-25, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(XMGMarin - 35, 0, 0, 0);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBarButtonDidRepeatClick) name:XMGTabBarButtonDidRepeatClickNotification object:nil];
 }

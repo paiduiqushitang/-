@@ -17,6 +17,7 @@
 #import "UIView+Frame.h"
 #import "UIBarButtonItem+Item.h"
 #import "XMGConst.h"
+#import "UIImage+Image.h"
 
 // #filename -> "filename"
 // @#filename -> @"filename"
