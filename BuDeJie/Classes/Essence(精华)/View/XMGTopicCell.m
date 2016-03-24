@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *caiButton;
 @property (weak, nonatomic) IBOutlet UIButton *repostButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet UIView *topCmtView;
+@property (weak, nonatomic) IBOutlet UILabel *topCmtLabel;
 @end
 
 @implementation XMGTopicCell
@@ -51,6 +53,33 @@
     [self setupButtonTitle:self.caiButton number:topic.cai placeholder:@"踩"];
     [self setupButtonTitle:self.repostButton number:topic.repost placeholder:@"分享"];
     [self setupButtonTitle:self.commentButton number:topic.comment placeholder:@"评论"];
+    
+    // 最热评论
+    if (topic.top_cmt.count) { // 有最热评论
+        self.topCmtView.hidden = NO;
+        
+        NSDictionary *cmt = topic.top_cmt.firstObject;
+        NSString *content = cmt[@"content"];
+        if (content.length == 0) { // 语音评论
+            content = @"[语音评论]";
+        }
+        NSString *username = cmt[@"user"][@"username"];
+        self.topCmtLabel.text = [NSString stringWithFormat:@"%@ : %@", username, content];
+    } else { // 没有最热评论
+        self.topCmtView.hidden = YES;
+    }
+    
+    // 不能用以下条件来判断数组里面是否有存放元素
+    //    if (topic.top_cmt) {
+    //
+    //    }
+    //    if (topic.top_cmt != nil) {
+    //
+    //    }
+    
+    //    NSString *str = @"";
+    //    if (str)
+    //    if (str.length)
 }
 
 /**

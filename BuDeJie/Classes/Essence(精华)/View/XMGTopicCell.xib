@@ -161,10 +161,39 @@
                             <constraint firstAttribute="bottom" secondItem="lTg-6c-jYg" secondAttribute="bottom" id="yFu-Hb-vgA"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEI-ih-MUj" userLabel="最热评论-整体">
+                        <rect key="frame" x="10" y="292" width="300" height="60"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最热评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="va8-Yl-he8" userLabel="最热评论-标题">
+                                <rect key="frame" x="0.0" y="0.0" width="68" height="21"/>
+                                <color key="backgroundColor" red="0.3411764706" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最热评论最热评论最热评论最热评论最热评论最热评论最热评论最热评论最热评" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1v-wG-IRb" userLabel="最热评论-内容">
+                                <rect key="frame" x="0.0" y="21" width="300" height="39"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.4388735701" blue="0.21729926599999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="va8-Yl-he8" firstAttribute="leading" secondItem="LEI-ih-MUj" secondAttribute="leading" id="U8w-hk-v5I"/>
+                            <constraint firstItem="a1v-wG-IRb" firstAttribute="top" secondItem="va8-Yl-he8" secondAttribute="bottom" id="bgc-nL-0Mw"/>
+                            <constraint firstAttribute="bottom" secondItem="a1v-wG-IRb" secondAttribute="bottom" id="jrV-Cd-L0r"/>
+                            <constraint firstItem="a1v-wG-IRb" firstAttribute="leading" secondItem="LEI-ih-MUj" secondAttribute="leading" id="lcQ-Gq-ejY"/>
+                            <constraint firstAttribute="trailing" secondItem="a1v-wG-IRb" secondAttribute="trailing" id="ohj-Mu-oDR"/>
+                            <constraint firstItem="va8-Yl-he8" firstAttribute="top" secondItem="LEI-ih-MUj" secondAttribute="top" id="xs5-gn-VQ4"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="IGz-fU-45K" secondAttribute="bottom" id="2Lc-WA-j8z"/>
                     <constraint firstItem="eQy-XY-Vyd" firstAttribute="top" secondItem="OoV-LX-Htr" secondAttribute="bottom" constant="10" id="6I7-FV-vzo"/>
+                    <constraint firstItem="IGz-fU-45K" firstAttribute="top" secondItem="LEI-ih-MUj" secondAttribute="bottom" constant="10" id="BSt-hB-G2p"/>
                     <constraint firstItem="gBR-pT-xbi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="HQj-rv-VtE"/>
                     <constraint firstAttribute="trailing" secondItem="IGz-fU-45K" secondAttribute="trailing" id="IoX-ll-qm9"/>
                     <constraint firstItem="z7y-QZ-H2M" firstAttribute="leading" secondItem="OoV-LX-Htr" secondAttribute="leading" id="JtH-S6-iCu"/>
@@ -172,9 +201,11 @@
                     <constraint firstItem="eQy-XY-Vyd" firstAttribute="trailing" secondItem="OYQ-TL-TCj" secondAttribute="trailing" id="S73-es-Gm4"/>
                     <constraint firstItem="OYQ-TL-TCj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="UJ4-DM-o29"/>
                     <constraint firstItem="z7y-QZ-H2M" firstAttribute="leading" secondItem="gBR-pT-xbi" secondAttribute="trailing" constant="10" id="bd6-Pt-5Vi"/>
+                    <constraint firstItem="LEI-ih-MUj" firstAttribute="trailing" secondItem="eQy-XY-Vyd" secondAttribute="trailing" id="dDt-Um-GTg"/>
                     <constraint firstAttribute="trailing" secondItem="OYQ-TL-TCj" secondAttribute="trailing" constant="10" id="duD-NN-YPc"/>
                     <constraint firstItem="eQy-XY-Vyd" firstAttribute="leading" secondItem="gBR-pT-xbi" secondAttribute="leading" id="kyV-Vl-t4I"/>
                     <constraint firstItem="gBR-pT-xbi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="l48-dS-ytO"/>
+                    <constraint firstItem="LEI-ih-MUj" firstAttribute="leading" secondItem="eQy-XY-Vyd" secondAttribute="leading" id="mw7-fF-NtY"/>
                     <constraint firstItem="gBR-pT-xbi" firstAttribute="bottom" secondItem="OoV-LX-Htr" secondAttribute="bottom" id="oKO-a8-NsT"/>
                     <constraint firstItem="z7y-QZ-H2M" firstAttribute="top" secondItem="gBR-pT-xbi" secondAttribute="top" id="pHs-Pr-yjg"/>
                 </constraints>
@@ -189,6 +220,8 @@
                 <outlet property="profileImageView" destination="gBR-pT-xbi" id="kP4-Ec-8Y4"/>
                 <outlet property="repostButton" destination="wRl-vh-XoD" id="RzB-EU-IWR"/>
                 <outlet property="text_label" destination="eQy-XY-Vyd" id="Opr-QR-DeH"/>
+                <outlet property="topCmtLabel" destination="a1v-wG-IRb" id="u4b-zR-0PH"/>
+                <outlet property="topCmtView" destination="LEI-ih-MUj" id="ceO-M1-Qcy"/>
             </connections>
             <point key="canvasLocation" x="224" y="283"/>
         </tableViewCell>
