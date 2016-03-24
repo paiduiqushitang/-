@@ -17,7 +17,7 @@
 /** 当前最后一条帖子数据的描述信息，专门用来加载下一页数据 */
 @property (nonatomic, copy) NSString *maxtime;
 /** 所有的帖子数据 */
-@property (nonatomic, strong) NSMutableArray *topics;
+@property (nonatomic, strong) NSMutableArray<XMGTopic *> *topics;
 
 /** 请求管理者 */
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
@@ -240,29 +240,16 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
 }
 
 #pragma mark - 代理方法
+/**
+ 这个方法的特点：
+ 1.默认情况下
+ 1> 每次刷新表格时，有多少数据，这个方法就一次性调用多少次（比如有100条数据，每次reloadData时，这个方法就会一次性调用100次）
+ 2> 每当有cell进入屏幕范围内，就会调用一次这个方法
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XMGTopic *topic = self.topics[indexPath.row];
-    
-    CGFloat cellHeight = 0;
-    
-    // 文字的Y值
-    cellHeight += 55;
-    
-    // 文字的高度
-    CGSize textMaxSize = CGSizeMake(XMGScreenW - 2 * XMGMarin, MAXFLOAT);
-    cellHeight += [topic.text sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:textMaxSize].height + XMGMarin;
-    
-    // 工具条
-    cellHeight += 35 + XMGMarin;
-    
-    return cellHeight;
+    return self.topics[indexPath.row].cellHeight;
 }
-
-
-// 这2个方法只适合计算单行文字的宽高
-//    [topic.text sizeWithFont:[UIFont systemFontOfSize:15]].width;
-//    [UIFont systemFontOfSize:15].lineHeight;
 
 /**
  *  用户松开scrollView时调用
