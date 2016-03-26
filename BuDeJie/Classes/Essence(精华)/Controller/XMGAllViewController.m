@@ -35,6 +35,9 @@
 @property (nonatomic, weak) UILabel *footerLabel;
 /** 上拉刷新控件是否正在刷新 */
 @property (nonatomic, assign, getter=isFooterRefreshing) BOOL footerRefreshing;
+
+// 有了方法声明，点语法才会有智能提示
+- (XMGTopicType)type;
 @end
 
 @implementation XMGAllViewController
@@ -145,6 +148,11 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
 }
 
 #pragma mark - 数据处理
+- (XMGTopicType)type
+{
+    return XMGTopicTypeVideo;
+}
+
 /**
  *  发送请求给服务器，下拉刷新数据
  */
@@ -157,7 +165,7 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
-    parameters[@"type"] = @"31";
+    parameters[@"type"] = @(self.type);
     
     // 3.发送请求
     [self.manager GET:XMGCommonURL parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
@@ -196,7 +204,7 @@ static NSString * const XMGTopicCellId = @"XMGTopicCellId";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"a"] = @"list";
     parameters[@"c"] = @"data";
-    parameters[@"type"] = @"31";
+    parameters[@"type"] = @(self.type);
     parameters[@"maxtime"] = self.maxtime;
     
     // 3.发送请求

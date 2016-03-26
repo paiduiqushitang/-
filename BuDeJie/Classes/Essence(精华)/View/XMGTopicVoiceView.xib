@@ -11,6 +11,12 @@
             <rect key="frame" x="0.0" y="0.0" width="343" height="222"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="bhY-Dc-ApN" userLabel="占位图片">
+                    <rect key="frame" x="0.0" y="30" width="343" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="pB4-j1-D2o"/>
+                    </constraints>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EKL-Sm-1k3">
                     <rect key="frame" x="0.0" y="0.0" width="343" height="222"/>
                 </imageView>
@@ -42,10 +48,13 @@
                 <constraint firstAttribute="trailing" secondItem="EKL-Sm-1k3" secondAttribute="trailing" id="3hP-R0-OUr"/>
                 <constraint firstItem="EKL-Sm-1k3" firstAttribute="leading" secondItem="Oo1-gJ-fyo" secondAttribute="leading" id="62q-47-4Qw"/>
                 <constraint firstAttribute="centerX" secondItem="vev-q0-odQ" secondAttribute="centerX" id="8wB-zC-Ct8"/>
+                <constraint firstAttribute="trailing" secondItem="bhY-Dc-ApN" secondAttribute="trailing" id="AOt-TM-aUI"/>
                 <constraint firstItem="EKL-Sm-1k3" firstAttribute="top" secondItem="Oo1-gJ-fyo" secondAttribute="top" id="Exe-49-jhq"/>
                 <constraint firstAttribute="bottom" secondItem="mLc-Bi-ddC" secondAttribute="bottom" id="JXT-Up-zdM"/>
                 <constraint firstAttribute="trailing" secondItem="mLc-Bi-ddC" secondAttribute="trailing" id="OTd-rq-X8W"/>
+                <constraint firstItem="bhY-Dc-ApN" firstAttribute="leading" secondItem="Oo1-gJ-fyo" secondAttribute="leading" id="Xl1-43-nAQ"/>
                 <constraint firstAttribute="bottom" secondItem="EKL-Sm-1k3" secondAttribute="bottom" id="br1-rS-jVr"/>
+                <constraint firstItem="bhY-Dc-ApN" firstAttribute="top" secondItem="Oo1-gJ-fyo" secondAttribute="top" constant="30" id="fCF-Ej-qmm"/>
                 <constraint firstItem="w5w-sQ-unU" firstAttribute="top" secondItem="Oo1-gJ-fyo" secondAttribute="top" id="mvO-Kd-FHM"/>
                 <constraint firstAttribute="centerY" secondItem="vev-q0-odQ" secondAttribute="centerY" id="vIB-MA-uIY"/>
             </constraints>
@@ -53,6 +62,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="imageView" destination="EKL-Sm-1k3" id="RTG-4R-QKf"/>
+                <outlet property="placeholderView" destination="bhY-Dc-ApN" id="AO4-NQ-quO"/>
                 <outlet property="playcountLabel" destination="w5w-sQ-unU" id="ANW-h2-dhV"/>
                 <outlet property="voicetimeLabel" destination="mLc-Bi-ddC" id="CII-cY-agZ"/>
             </connections>
@@ -60,6 +70,7 @@
         </view>
     </objects>
     <resources>
+        <image name="imageBackground" width="75" height="15"/>
         <image name="playButton" width="63" height="63"/>
         <image name="playButtonClick" width="63" height="63"/>
         <image name="playButtonPlay" width="30" height="30"/>

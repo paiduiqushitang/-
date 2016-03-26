@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *playcountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voicetimeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *placeholderView;
 @end
 
 @implementation XMGTopicVoiceView
@@ -29,7 +30,12 @@
     _topic = topic;
     
     // 设置图片
-    [self.imageView xmg_setOriginImage:topic.image1 thumbnailImage:topic.image0 placeholder:nil];
+    self.placeholderView.hidden = NO;
+    [self.imageView xmg_setOriginImage:topic.image1 thumbnailImage:topic.image0 placeholder:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!image) return;
+        
+        self.placeholderView.hidden = YES;
+    }];
     
     // 播放数量
     if (topic.playcount >= 10000) {

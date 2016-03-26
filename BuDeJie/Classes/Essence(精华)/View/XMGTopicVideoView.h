@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XMGTopicVideoView : UIView
+@class XMGTopic;
 
+@interface XMGTopicVideoView : UIView
+/** 模型数据 */
+@property (nonatomic, strong) XMGTopic *topic;
 @end

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIImageView+WebCache.h>
 
 @interface UIImageView (Download)
-- (void)xmg_setOriginImage:(NSString *)originImageURL thumbnailImage:(NSString *)thumbnailImageURL placeholder:(UIImage *)placeholder;
+- (void)xmg_setOriginImage:(NSString *)originImageURL thumbnailImage:(NSString *)thumbnailImageURL placeholder:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock;
 
 - (void)xmg_setHeader:(NSString *)headerUrl;
 @end

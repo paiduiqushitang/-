@@ -120,6 +120,7 @@
         self.pictureView.hidden = YES;
         self.voiceView.hidden = YES;
         self.videoView.hidden = NO;
+        self.videoView.topic = topic;
     } else if (topic.type == XMGTopicTypeWord) { // 段子
         self.pictureView.hidden = YES;
         self.voiceView.hidden = YES;
