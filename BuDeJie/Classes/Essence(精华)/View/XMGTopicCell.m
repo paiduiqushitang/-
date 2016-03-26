@@ -120,6 +120,7 @@
     } else if (topic.type == XMGTopicTypeVoice) { // 声音
         self.pictureView.hidden = YES;
         self.voiceView.hidden = NO;
+        self.voiceView.topic = topic;
         self.videoView.hidden = YES;
     } else if (topic.type == XMGTopicTypeVideo) { // 视频
         self.pictureView.hidden = YES;

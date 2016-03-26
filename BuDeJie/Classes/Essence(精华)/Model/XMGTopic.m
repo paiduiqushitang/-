@@ -10,6 +10,11 @@
 
 @implementation XMGTopic
 
+/*
+ 如果错误信息里面包含了：NaN，一般都是因为除0造成（比如x/0）
+ (NaN : Not a number）
+ */
+
 - (CGFloat)cellHeight
 {
     // 如果已经计算过，就直接返回
@@ -24,14 +29,6 @@
     
     // 中间的内容    
     if (self.type != XMGTopicTypeWord) { // 中间有内容（图片、声音、视频）
-        /*
-         self.width     middleW
-         ----------- == -------
-         self.height    middleH
-         
-         self.width * middleH == middleW * self.height
-         */
-        
         CGFloat middleW = textMaxSize.width;
         CGFloat middleH = middleW * self.height / self.width;
         CGFloat middleY = _cellHeight;
