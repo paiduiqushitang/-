@@ -55,6 +55,7 @@
 		70AB495A1C9935CF0044E502 /* XMGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AB49581C9935CF0044E502 /* XMGWebViewController.m */; };
 		70AB495B1C9935CF0044E502 /* XMGWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AB49591C9935CF0044E502 /* XMGWebViewController.xib */; };
 		70AB495D1C99392F0044E502 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AB495C1C99392F0044E502 /* WebKit.framework */; };
+		70BC0E651CA618FE007AE64F /* UIImageView+Download.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BC0E641CA618FE007AE64F /* UIImageView+Download.m */; };
 		70CB981B1C93B788003A01DD /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CB981A1C93B788003A01DD /* UIView+Frame.m */; };
 		70CB981F1C93C341003A01DD /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CB981E1C93C341003A01DD /* UIBarButtonItem+Item.m */; };
 		70CB98221C93C963003A01DD /* XMGNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CB98211C93C963003A01DD /* XMGNavigationViewController.m */; };
@@ -173,6 +174,8 @@
 		70AB49581C9935CF0044E502 /* XMGWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGWebViewController.m; sourceTree = "<group>"; };
 		70AB49591C9935CF0044E502 /* XMGWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGWebViewController.xib; sourceTree = "<group>"; };
 		70AB495C1C99392F0044E502 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		70BC0E631CA618FE007AE64F /* UIImageView+Download.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Download.h"; sourceTree = "<group>"; };
+		70BC0E641CA618FE007AE64F /* UIImageView+Download.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Download.m"; sourceTree = "<group>"; };
 		70CB98191C93B788003A01DD /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		70CB981A1C93B788003A01DD /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		70CB981C1C93B976003A01DD /* BuDeJie.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuDeJie.pch; sourceTree = "<group>"; };
@@ -578,6 +581,8 @@
 				70CB981E1C93C341003A01DD /* UIBarButtonItem+Item.m */,
 				70D569221C98F16C00B36123 /* UITextField+Placeholder.h */,
 				70D569231C98F16C00B36123 /* UITextField+Placeholder.m */,
+				70BC0E631CA618FE007AE64F /* UIImageView+Download.h */,
+				70BC0E641CA618FE007AE64F /* UIImageView+Download.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -914,6 +919,7 @@
 				700334EA1C92A9CC00B04292 /* XMGFriendTrendViewController.m in Sources */,
 				700334E41C92A96D00B04292 /* main.m in Sources */,
 				700334E31C92A96D00B04292 /* AppDelegate.m in Sources */,
+				70BC0E651CA618FE007AE64F /* UIImageView+Download.m in Sources */,
 				70CB981B1C93B788003A01DD /* UIView+Frame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -79,13 +79,7 @@
     _topic = topic;
     
     // 顶部控件的数据
-    UIImage *placeholder = [UIImage xmg_circleImageNamed:@"defaultUserIcon"];
-    [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:topic.profile_image] placeholderImage:placeholder options:0 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        // 图片下载失败，直接返回，按照它的默认做法
-        if (!image) return;
-        
-        self.profileImageView.image = [image xmg_circleImage];
-    }];
+    [self.profileImageView xmg_setHeader:topic.profile_image];
     
     self.nameLabel.text = topic.name;
     self.passtimeLabel.text = topic.passtime;
