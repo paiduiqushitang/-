@@ -57,6 +57,8 @@ typedef NS_ENUM(NSUInteger, XMGTopicType) {
 @property (nonatomic, copy) NSString *image2;
 /** 大图 */
 @property (nonatomic, copy) NSString *image1;
+/** 是否为动图 */
+@property (nonatomic, assign) BOOL is_gif;
 
 /** 音频时长 */
 @property (nonatomic, assign) NSInteger voicetime;
@@ -70,4 +72,6 @@ typedef NS_ENUM(NSUInteger, XMGTopicType) {
 @property (nonatomic, assign) CGFloat cellHeight;
 /** 中间内容的frame */
 @property (nonatomic, assign) CGRect middleFrame;
+/** 是否为超长图片 */
+@property (nonatomic, assign, getter=isBigPicture) BOOL bigPicture;
 @end

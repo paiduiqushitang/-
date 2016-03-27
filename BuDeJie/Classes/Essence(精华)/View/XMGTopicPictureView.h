@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XMGTopicPictureView : UIView
+@class XMGTopic;
 
+@interface XMGTopicPictureView : UIView
+/** 模型数据 */
+@property (nonatomic, strong) XMGTopic *topic;
 @end

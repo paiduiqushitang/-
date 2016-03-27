@@ -109,6 +109,7 @@
     // 中间的内容
     if (topic.type == XMGTopicTypePicture) { // 图片
         self.pictureView.hidden = NO;
+        self.pictureView.topic = topic;
         self.voiceView.hidden = YES;
         self.videoView.hidden = YES;
     } else if (topic.type == XMGTopicTypeVoice) { // 声音
