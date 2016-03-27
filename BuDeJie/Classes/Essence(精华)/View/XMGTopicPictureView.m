@@ -22,22 +22,11 @@
 - (void)awakeFromNib
 {
     self.autoresizingMask = UIViewAutoresizingNone;
-    
-    // 控制按钮内部的子控件对齐，不是用contentMode，是用以下2个属性
-//    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    btn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-    
-    // 控件按钮内部子控件之间的间距
-//    btn.contentEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
-//    btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-//    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 }
 
 - (void)setTopic:(XMGTopic *)topic
 {
     _topic = topic;
-    
-    XMGLog(@"%@ %@", topic.text, topic.image1)
     
     // 设置图片
     self.placeholderView.hidden = NO;
@@ -49,13 +38,6 @@
     
     // gif
     self.gifView.hidden = !topic.is_gif;
-    // http://ww2.sinaimg.cn/bmiddle/005yUFpDjw1f297c6vgzig306y04rnpd.GIF
-//    if ([topic.image1.lowercaseString hasSuffix:@"gif"]) {
-//    if ([topic.image1.pathExtension.lowercaseString isEqualToString:@"gif"]) {
-//        self.gifView.hidden = NO;
-//    } else {
-//        self.gifView.hidden = YES;
-//    }
     
     // 点击查看大图
     if (topic.isBigPicture) { // 超长图
